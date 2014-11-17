@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML5 Login</title>
+	<link rel="stylesheet" href="normalize.css">
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+</head>
+<body>
+	<section class="loginform cf">
+		<form name="login" action="index_submit" method="get" accept-charset="utf-8" autocomplete="on">
+			<ul>
+				<li>
+					<label for="Master Password" type="password">Master Password</label>
+					<input type="password" name="master password" placeholder="password" required>
+				</li>
+				<li>
+					<label for="website">Website</label>
+					<input type="text" name="website" placeholder="website" required>
+				</li>
+				<li>
+					<label for="usermail">Email</label>
+					<input type="email" name="usermail" placeholder="yourname@email.com" required>
+				</li>
+				<li>
+					<label for="version">Version</label>
+					<input type="integer" name="version" placeholder="1" >
+				</li>
+				<li>
+					<label for="margin-right: 30px;">Generated Password</label>
+					<input type="text" name="password" placeholder="Click Generate" >
+				</li>
+				<li>
+					<input type="submit" value="Generate">
+				</li>
+			</ul>
+		</form>
+	</section>
+</body>
+</html>
