@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Testing scrypt in the browser</title>
+        <script src="browser/scrypt.js"></script>
+        <script> var scrypt = scrypt_module_factory();
+            var a = scrypt.crypto_scrypt(scrypt.encode_utf8("pleaseletmein"),
+                                 scrypt.encode_utf8("SodiumChloride"),
+                                         16384, 8, 2, 10);
+                                         var str1 = String.fromCharCode.apply(null, a);
+                                         
+                                         document.write(btoa(str1));
+        </script>
+    </head>
+    <body>
+            hi
+    </body>
+</html>
