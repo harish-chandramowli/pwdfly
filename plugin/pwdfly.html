@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
+
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+
+		<body bgcolor="#000000" id="body_elem">
+			<table>
+				<tr>
+					<td>
+						<input class = "textbox" type = "text" name = "url" placeholder = "URL" id = "url">
+					</td>
+					<td>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<img src = "images/bird50.png"></img>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class = "textbox" type = "text" name = "email" placeholder = "email" id = "email">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class = "textbox2" type = "password" name = "master_pwd" placeholder = "Master Password" id = "master_pwd" autocomplete="off">
+					</td>
+					<td>
+						<input class = "textbox2" type = "password" id = "site_pwd" name = "site_pwd" placeholder = "Site Password" autocomplete="off" class="showpassword">
+						<script src="js/onfocus_script.js"></script>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class = "textbox3" type = "text" id = "version" name = "version" placeholder = "Version">	
+					</td>
+					<td>
+						<font color="white"><h2>Show Password:</font>
+						<input type = "checkbox" id = "check"></h2></font>
+						<script src="js/display_pwd.js"></script>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class = "btn-custom" type = "button" style="font-face: 'Comic Sans MS'; font-size: larger; color: black; background-color: #FF6600; border: 3pt ridge #FF6600" value = "Place Value" name = "place_values" id = "place_values">
+						<script src="js/placevalues.js"></script>
+					</td>
+					<td>
+						<input class = "btn-custom" type = "button" style="font-face: 'Comic Sans MS'; font-size: larger; color: black; background-color: #FF6600; border: 3pt ridge #FF6600" value = "Generate Password" name = "generate_pwd" id = "generate_pwd">
+						<script src="js/generate_password.js"></script>
+						<script src="js/scrypt.js"></script>
+					</td>
+					<td>
+						<input class = "btn-custom" type = "button" style="font-face: 'Comic Sans MS'; font-size: larger; color: black; background-color: #FF6600; border: 3pt ridge #FF6600" value = "Place Password" name = "place_pwd" id = "place_pwd">
+						<script src="js/place_pwd_site.js"></script>
+					</td>
+				</tr>
+			</table>
+		</body>
+</html>
