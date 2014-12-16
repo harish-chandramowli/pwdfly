@@ -61,9 +61,10 @@ h2 span {
 .textbox 
 {
 background: #F1F1F1 url(http://html-generator.weebly.com/files/theme/input-text-40.png) no-repeat;
-background-position: 5px -7px !important;
+background-position: 5px -11px !important;
 padding: 10px 10px 10px 25px;
-width: 270px;
+width: 120px;
+height: 7px;
 border: 1px solid #CCC;
 -moz-border-radius: 5px;
 -webkit-border-radius: 5px;
@@ -86,9 +87,10 @@ box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
 .textbox3 
 {
     background: #F1F1F1 url(http://html-generator.weebly.com/files/theme/input-text-40.png) no-repeat;
-    background-position: 5px -7px !important;
+    background-position: 5px -11px !important;
     padding: 10px 10px 10px 25px;
-    width: 80px;
+    width: 50px;
+	height: 7px;
     border: 1px solid #CCC;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -111,9 +113,10 @@ box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
 .textbox2 
 {
     background: #F1F1F1 url(http://kimuralock.com/wp-content/uploads/2014/03/lock_icon_small.png) no-repeat;
-    background-position: 5px 7px !important;
+    background-position: 5px 6px !important;
     padding: 10px 10px 10px 25px;
-    width: 270px;
+    width: 120px;
+	height: 7px;
     border: 1px solid #CCC;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -133,13 +136,40 @@ box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
     box-shadow: 0 0 0 1px #E8C291 inset;
 }
 
+.textbox4
+{
+    background: #F1F1F1 url(http://kimuralock.com/wp-content/uploads/2014/03/lock_icon_small.png) no-repeat;
+    background-position: 5px 6px !important;
+    padding: 10px 10px 10px 25px;
+    width: 120px;
+	height: 7px;
+    border: 1px solid #CCC;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+    -webkit-box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
+    box-shadow: 0 1px 1px #CCC inset, 0 1px 0 #FFF;
+}
+
+.textbox4:focus 
+{
+    background-color: #FFF;
+    border-color: #E8C291;
+    outline: none;
+    -moz-box-shadow: 0 0 0 1px #e8c291 inset;
+    -webkit-box-shadow: 0 0 0 1px #E8C291 inset;
+    box-shadow: 0 0 0 1px #E8C291 inset;
+}
+
+
 .btn-custom 
 {
   display: inline-block;
   margin: 1em 0 0 0;
   padding: 0.4em 2em;
   font-size: 1.0em;
-  background: rgba(255,255,255,0.07);
+  background-color: #FFFF00;
   color: rgba(0,0,0,0.7);
   text-shadow: 1px 1px 0 rgba(255,255,255,0.1);
   text-decoration: none;

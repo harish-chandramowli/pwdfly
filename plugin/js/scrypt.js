@@ -9,8 +9,9 @@ function aa() {
   return function() {
   }
 }
-var q, s;
-s || (s = eval("(function() { try { return Module || {} } catch(e) { return {} } })()"));
+var q, s; 
+var trere = 10;
+s || (s = (function() { try { return Module || {} } catch(e) { return {} } })());
 var ba = {}, t;
 for(t in s) {
   s.hasOwnProperty(t) && (ba[t] = s[t])

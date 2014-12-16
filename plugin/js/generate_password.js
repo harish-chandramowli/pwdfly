@@ -36,13 +36,38 @@ function generate_site_pwd() {
 	
 		var spl_char_len = 1 + ((master_pwd.length + email.length)%4)
 	
-		var scrypt_output = scrypt.crypto_scrypt(scrypt.encode_utf8(master_pwd,
+		var scrypt_output = scrypt.crypto_scrypt(scrypt.encode_utf8(master_pwd),
 	                 scrypt.encode_utf8(salt),
     	                16384, 8, version, sitepass_length+(2*spl_char_len));
     	                
     	var password = form_password(scrypt_output, sitepass_length, spl_char_len);
+    	document.getElementById('site_pwd').value = password;
 	}
-  	
+}
+
+
+function replaceChar(str,index,chr) {
+    if(index > str.length-1) return str;
+    return str.substr(0,index) + chr + str.substr(index+1);
+}
+
+function insert_spl(scrypt_output,password,spl_char_len)
+{
+	var spl_char = ["!","@","#","$","%","^","&","*","(",")","_","-"];
+
+	for(var i=0; i<spl_char_len; i++)
+	{
+		var spl_insert_id = password.length - spl_char_len+i;
+		var spl_rand = scrypt_output[spl_insert_id]%spl_char.length;
+		spl_to_insert = spl_char[spl_rand];
+		password = replaceChar(password,spl_insert_id,spl_to_insert);
+		
+		var swap_id = (scrypt_output[password.length + i])%password.length;
+		var temp = password[swap_id];
+		password = replaceChar(password,swap_id,spl_to_insert);
+		password = replaceChar(password,spl_insert_id, temp)
+	}
+	return password;
 }
 
 
