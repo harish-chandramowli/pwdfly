@@ -29,8 +29,10 @@ function generate_site_pwd() {
     }
     else
   	{
+  		syncvalues(email,version);
+  		
   		var scrypt = scrypt_module_factory();
-  		var salt = url+email;
+  		var salt = url+email+version;
 	
 		var sitepass_length = 12 + ((master_pwd.length + url.length)%4) 
 	
@@ -38,13 +40,21 @@ function generate_site_pwd() {
 	
 		var scrypt_output = scrypt.crypto_scrypt(scrypt.encode_utf8(master_pwd),
 	                 scrypt.encode_utf8(salt),
-    	                16384, 8, version, sitepass_length+(2*spl_char_len));
+    	                16384, 8, 1, sitepass_length+(2*spl_char_len));
     	                
     	var password = form_password(scrypt_output, sitepass_length, spl_char_len);
     	document.getElementById('site_pwd').value = password;
 	}
 }
 
+function syncvalues(email,version)
+{
+	chrome.storage.sync.set({'email': email}, function (result) {
+				});
+	chrome.storage.sync.set({'ver': version}, function (result) {
+				});
+
+}
 
 function replaceChar(str,index,chr) {
     if(index > str.length-1) return str;

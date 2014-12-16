@@ -40,25 +40,6 @@ function validate_input()
   	return false; 
 }
 
-function temp_fill()
-{
-	if(document.getElementById("url").value == "")
-	{
-		document.getElementById("url").value = "we2";
-	}
-	if(document.getElementById("email").value == "")
-	{
-		document.getElementById("email").value = "we@we.com";
-	}
-	if(document.getElementById("master_password").value == "")
-	{
-		document.getElementById("master_password").value = "Harish@6";
-	}
-	document.getElementById("version").value = 1;
-	document.getElementById("site_password").type="text";
-}
-
-
 function isExtension(input)
 {
 	var extn = ["com","net","htm","html","edu"]
@@ -165,8 +146,6 @@ function form_password(scrypt_output, sitepass_length, insert_len)
 function generate_pass() 
 {
 
-	temp_fill();
-	
 	if(validate_input() == false )
 	{
 		return;
