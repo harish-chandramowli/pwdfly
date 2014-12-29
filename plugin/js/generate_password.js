@@ -1,6 +1,14 @@
 function generate_site_pwd() {
    
   var url = document.getElementById("url").value;
+  var url_token = url.split(".");
+  
+  if(typeof url_token[1] != 'undefined')
+  	var url = url_token[0];
+  
+  if(typeof url_token[2] != 'undefined')
+  	var url = url_token[1];
+  	  
   var email = document.getElementById("email").value;
   var master_pwd = document.getElementById("master_pwd").value;
   var version = document.getElementById("version").value;
@@ -34,15 +42,14 @@ function generate_site_pwd() {
   		var scrypt = scrypt_module_factory();
   		var salt = url+email+version;
 	
-		var sitepass_length = 12 + ((master_pwd.length + url.length)%4) 
-	
-		var spl_char_len = 1 + ((master_pwd.length + email.length)%4)
+		var sitepass_length = 12 + ((master_pwd.length + url.length)%4);
 	
 		var scrypt_output = scrypt.crypto_scrypt(scrypt.encode_utf8(master_pwd),
 	                 scrypt.encode_utf8(salt),
-    	                16384, 8, 1, sitepass_length+(2*spl_char_len));
+    	                16384, 8, 1, sitepass_length);
     	                
-    	var password = form_password(scrypt_output, sitepass_length, spl_char_len);
+    	var password = form_password(scrypt_output);
+    	
     	document.getElementById('site_pwd').value = password;
 	}
 }
@@ -59,25 +66,6 @@ function syncvalues(email,version)
 function replaceChar(str,index,chr) {
     if(index > str.length-1) return str;
     return str.substr(0,index) + chr + str.substr(index+1);
-}
-
-function insert_spl(scrypt_output,password,spl_char_len)
-{
-	var spl_char = ["!","@","#","$","%","^","&","*","(",")","_","-"];
-
-	for(var i=0; i<spl_char_len; i++)
-	{
-		var spl_insert_id = password.length - spl_char_len+i;
-		var spl_rand = scrypt_output[spl_insert_id]%spl_char.length;
-		spl_to_insert = spl_char[spl_rand];
-		password = replaceChar(password,spl_insert_id,spl_to_insert);
-		
-		var swap_id = (scrypt_output[password.length + i])%password.length;
-		var temp = password[swap_id];
-		password = replaceChar(password,swap_id,spl_to_insert);
-		password = replaceChar(password,spl_insert_id, temp)
-	}
-	return password;
 }
 
 
@@ -101,6 +89,7 @@ function validate_pass(password)
 		}
 }
 
+
 function create_strict_password(password)
 {
 		var number = null;
@@ -120,24 +109,54 @@ function create_strict_password(password)
 		}
 		
 		//Make sure the password has at-least one lower case character is present
+		
 		if(lower_alpha == null)
-			lower_alpha = String.fromCharCode("a"+(password[0]%26));
+			lower_alpha = String.fromCharCode(97+(password.charCodeAt(0)%26));
 			password = temp_pass + password.substr(constrains);
 		if(upper_alpha == null)
-			upper_alpha = String.fromCharCode("A"+(password[1]%26));
+			upper_alpha = String.fromCharCode(65+(password.charCodeAt(1)%26));
 		if(number == null)
-			number = String.fromCharCode("0"+(password[2]%10));
+			number = String.fromCharCode(48+(password.charCodeAt(2)%10));
+		if(spl_char == null)
+		{
+			var spl_char = ["!","@","#","$","%","^","&","*","(",")","_","-","+","=",",","<",".",">","?","/",";",":","\"","[","{","}","]","|"];
+			spl_char = spl_char[password.charCodeAt(3)%spl_char.length];
+		}
 		return lower_alpha + upper_alpha + number + spl_char + password.substring(4)
 }
 
 
-function form_password(scrypt_output, sitepass_length, insert_len)
+function form_password(scrypt_output)
 {
-	var constrains = 4; //Different type of inputs promised 
-	var b64_outbut = btoa(scrypt_output);
-	var password = b64_outbut.substring(0, sitepass_length);
+	var constrains = 4; //Different type of inputs promised
+	var spl_char = ["!","@","#","$","%","^","&","*","(",")","_","-","+","=",",","<",".",">","?","/",";",":","\"","[","{","}","]","|"];
 	
-	password = insert_spl(scrypt_output,password,insert_len);
+	var charset_size = 26+26+10+spl_char.length;
+	var password = "";//b64_outbut.substring(0, sitepass_length);
+	
+	for(var i=0;i<scrypt_output.length;i++)
+	{
+		var rand_index = (scrypt_output[i]*(charset_size-1))/255;
+		rand_index = Math.round(rand_index);
+		var new_char;
+		if(rand_index < 26)
+		{
+			new_char = String.fromCharCode(97 + rand_index);
+		}
+		else if(rand_index < 52)
+		{
+			new_char = String.fromCharCode(65+ rand_index - 26);
+		}
+		else if(rand_index < 62)
+		{
+			new_char = String.fromCharCode(48 + rand_index - 52);
+		}
+		else
+		{
+			new_char = spl_char[rand_index-62];
+		}
+		password = password + new_char;
+	}
 	
 	if(validate_pass(password) == false )
 	{
@@ -146,7 +165,6 @@ function form_password(scrypt_output, sitepass_length, insert_len)
 	
 	return password;
 }
-
 
 
 document.getElementById("generate_pwd").onclick = generate_site_pwd;

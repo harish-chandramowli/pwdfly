@@ -9,8 +9,7 @@ function aa() {
   return function() {
   }
 }
-var q, s; 
-var trere = 10;
+var q, s;
 s || (s = (function() { try { return Module || {} } catch(e) { return {} } })());
 var ba = {}, t;
 for(t in s) {

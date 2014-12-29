@@ -2,7 +2,7 @@
 ## License
 
 PwdFly is written by Harish Salem Chandramowli
-<harishjhu@gmail.com> and Narayan Gowraj <gowrajn@gmail.com> . PwdFly is licensed under the [2-clause BSD license](http://opensource.org/licenses/BSD-2-Clause):
+<harish.jhu@gmail.com> and Narayan Gowraj <gowrajn@gmail.com> . PwdFly is licensed under the [2-clause BSD license](http://opensource.org/licenses/BSD-2-Clause):
 
 > Copyright &copy; 2014, Tony Garnock-Jones  
 > All rights reserved.
